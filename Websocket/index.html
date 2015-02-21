@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Websocket - OWIN-JS</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> OWIN-JS</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        <span>Specification</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Specification">OWIN-JS</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Extensions</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../CommonKeys">Common Keys</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Opaque">Opaque</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">Websocket</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#websocket-extension">WebSocket Extension</a></li>
+                            
+                                <li><a class="toctree-l3" href="#contents">Contents</a></li>
+                            
+                                <li><a class="toctree-l3" href="#1-introduction">1. Introduction</a></li>
+                            
+                                <li><a class="toctree-l3" href="#246-definitions">2. Definitions</a></li>
+                            
+                                <li><a class="toctree-l3" href="#346-detection">3. Detection</a></li>
+                            
+                                <li><a class="toctree-l3" href="#446-accept">4. Accept</a></li>
+                            
+                                <li><a class="toctree-l3" href="#546-consumption">5. Consumption</a></li>
+                            
+                                <li><a class="toctree-l3" href="#646-delegate-signature">6. Delegate Signature</a></li>
+                            
+                                <li><a class="toctree-l3" href="#746-usage">7. Usage</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../nodekit">io.nodekit</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Websocket</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/OWIN-JS/spec/" class="icon icon-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <p><a href="http://owinjs.org"><img alt="OWIN-JS" src=".././owin-js.png" /></a></p>
+<h1 id="websocket-extension">WebSocket Extension</h1>
+<p>OWIN-JS WebSocket Extension</p>
+<ul>
+<li>License : <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 Unported License</a></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<ol>
+<li>
+<p><a href="#1-introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="#2-definitions">Definitions</a></p>
+</li>
+<li>
+<p><a href="#3-detection">Detection</a></p>
+</li>
+<li>
+<p><a href="#4-accept">Accept</a></p>
+</li>
+<li>
+<p><a href="#5-consumption">Consumption</a></p>
+</li>
+<li>
+<p><a href="#6-delegate-signature">Delegate Signature</a></p>
+</li>
+<li>
+<p><a href="#7-usage">Usage</a></p>
+</li>
+</ol>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This document outlines the recommended patterns for using WebSockets through the OWIN-JS interface. It depends on OWIN-JS v1.0.0 (but may work with other versions), the OWIN-JS opaque streams extension, and uses the extension key mechanics as outlined in CommonKeys.</p>
+<h2 id="246-definitions">2. Definitions</h2>
+<p>WebSocket - Defined in RFC 6455, a web socket is a bidirectional, framed communication channel that uses HTTP for its initial handshake.</p>
+<p>Opaque Stream - Some servers allow a request to take direct ownership of the underlying connection after the initial HTTP handshake. This gives the application access to a bidirectional opaque stream and the application is then responsible for employing its own protocol (e.g. WebSockets) to communicate with the client.</p>
+<h2 id="346-detection">3. Detection</h2>
+<p>In order for an application to use WebSockets it MUST first detect support for the extension.</p>
+<h3 id="3461-startup">3.1 Startup</h3>
+<p>At startup the server SHOULD specify in the Properties server.Capabilities dictionary if WebSockets is supported (see the table below). If the application does not see support for WebSockets but does see support for Opaque Streams, it MAY insert a middleware to add WebSocket support.</p>
+<table>
+<thead>
+<tr>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>websocket.Version</td>
+<td>The string value 1.0 indicating version 1.0 of the OWIN WebSocket extension</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3462-per-request">3.2 Per Request</h3>
+<p>The WebSocket capable server or middleware inspects each request as it arrives to determine if it is WebSocket compatible (e.g. verb, headers, etc.). If so, it marks the request with a specific environment key (see the table below).</p>
+<table>
+<thead>
+<tr>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>websocket.Accept</td>
+<td>A WebSocketAccept Action added by the server if the current request supports WebSockets. See Delegate Signature</td>
+</tr>
+</tbody>
+</table>
+<h2 id="446-accept">4. Accept</h2>
+<p>When an application sees a request that is marked as WebSocket capable and decides to accept to a WebSocket, it indicates this to the server or middleware by invoking the provided WebSocketAccept Action with parameters and a WebSocketFunc callback. This Action MUST immediately set the response status code to 101 and validate any input parameters and request state. The application then completes the AppFunc Task and allows the request pipeline to unwind.</p>
+<p>Before invoking the WebSocketAccept Action the application MAY set the Sec-WebSocket-Protocol response header OR specify the subprotocol property in the parameters dictionary (see the table below), according to RFC 6455 Section 4.2.2 Step 5.5.</p>
+<p>When the pipeline has unwound to the WebSocket server or middleware it SHOULD perform the requested accept. The WebSocket server or middleware MUST provide the necessary WebSocket response headers when performing the accept. Once the accept is complete the request has left HTTP processing and transitioned to WebSocket processing. The original Environment dictionary and its content are presumed invalid and a new one MUST be provided to the WebSocketFunc callback with the keys listed as required in the table below (see Consumption).</p>
+<p>If the accept fails then the server or middleware SHOULD terminate the request. There is no guarantee that the WebSocketFunc provided by the application can or will be invoked in these scenarios, but the owin.CallCancelled CancellationToken MUST be signaled if the callback wont be.</p>
+<p>The WebSocketAccept parameters dictionary MAY be null if there are no parameters to pass in. If not null, it MUST be mutable and use ordinal key comparison.</p>
+<table>
+<thead>
+<tr>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>websocket.SubProtocol</td>
+<td>The negotiated protocol according to RFC 6455 Section 4.2.2 Step 5.5</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to these keys the host, server, middleware, application, etc. may add arbitrary data associated with the WebSocket Accept to the parameters dictionary. Guidelines for additional keys and a list of commonly defined keys can be found in CommonKeys.html.</p>
+<h2 id="546-consumption">5. Consumption</h2>
+<p>When the server or middleware invoke the WebSocketFunc it provides a new WebSocket Environment dictionary (see Delegate Signature). The WebSocket Environment dictionary has the same requirements as the OWIN request Environment dictionary, namely that it MUST be non-null, mutable, use ordinal key comparison, and MUST contain the keys and values where listed as required in the table below.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Required</th>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Yes</td>
+<td>websocket.SendAsync</td>
+<td>A Func used to send data. See Delegate Signature.</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>websocket.ReceiveAsync</td>
+<td>A Func used to receive data. See Delegate Signature..</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>websocket.CloseAsync</td>
+<td>A Func used to close the output channel. See Delegate Signature.</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>websocket.Version</td>
+<td>The string value 1.0 indicating version 1.0 of this OWIN WebSockets extension.</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>websocket.CallCancelled</td>
+<td>A CancellationToken provided by the server to signal that the WebSocket has been canceled/aborted.</td>
+</tr>
+<tr>
+<td align="left">No</td>
+<td>websocket.ClientCloseStatus</td>
+<td>An optional int that may be set by the server or middleware when a close frame is received.</td>
+</tr>
+<tr>
+<td align="left">No</td>
+<td>websocket.ClientCloseDescription</td>
+<td>An optional string that may be set by the server or middleware when a close frame is received.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to these keys the host, server, middleware, application, etc. may add arbitrary data associated with the WebSocket context to the environment dictionary. Guidelines for additional keys and a list of commonly defined keys can be found in CommonKeys.html.</p>
+<h2 id="646-delegate-signature">6. Delegate Signature</h2>
+<p>The WebSocket signatures are follows:</p>
+<p><code>C#</code></p>
+<pre><code>using System;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+namespace Owin.WebSockets
+{
+using WebSocketAccept =
+    Action
+    &lt;
+        IDictionary&lt;string, object&gt;, // WebSocket Accept parameters
+        Func // WebSocketFunc callback
+        &lt;
+            IDictionary&lt;string, object&gt;, // WebSocket environment
+            Task // Complete
+        &gt;
+    &gt;;
+
+using WebSocketFunc =
+    Func
+    &lt;
+        IDictionary&lt;string, object&gt;, // WebSocket Environment
+        Task // Complete
+    &gt;;
+
+using WebSocketSendAsync =
+    Func
+    &lt;
+        ArraySegment&lt;byte&gt; /* data */,
+        int /* messageType */,
+        bool /* endOfMessage */,
+        CancellationToken /* cancel */,
+        Task
+    &gt;;
+
+using WebSocketReceiveAsync =
+    Func
+    &lt;
+        ArraySegment&lt;byte&gt; /* data */,
+        CancellationToken /* cancel */,
+        Task
+        &lt;
+            Tuple
+            &lt;
+                int /* messageType */,
+                bool /* endOfMessage */,
+                int /* count */
+            &gt;
+        &gt;
+    &gt;;
+
+using WebSocketReceiveTuple =
+    Tuple
+    &lt;
+        int /* messageType */,
+        bool /* endOfMessage */,
+        int /* count */
+    &gt;;
+
+using WebSocketCloseAsync =
+    Func
+    &lt;
+        int /* closeStatus */,
+        string /* closeDescription */,
+        CancellationToken /* cancel */,
+        Task
+    &gt;;
+}
+</code></pre>
+<h2 id="746-usage">7. Usage</h2>
+<h3 id="71-websocketaccept">7.1 WebSocketAccept</h3>
+<p>Provided by the server in the original environment dictionary for a WebSocket compatible request. This is invoked by the application to request the upgrade to WebSockets. The parameters dictionary may be null, but the WebSocketFunc callback MUST NOT be null. Invoking this will cause the response status code to be set to 101.</p>
+<h3 id="72-websocketfunc">7.2 WebSocketFunc</h3>
+<p>This is the WebSocket application entry point. The server provides an Dictionary containing request information and the Send, Receive, and Close Funcs. On completion (success or fail), the application MUST complete or fail the returned Task or throw a synchronous exception.</p>
+<h3 id="73-websocketsendasync">7.3 WebSocketSendAsync</h3>
+<p>The application uses the WebSocketSendAsync Func to send data to the client. The application does not have direct control over frame boundaries, but it does control message boundaries. The values of messageType MUST match the opcodes defined in the RFC; E.g. 0x1 = Text, 0x2 = Binary, and 0x8 = Close. If SendAsync is used to send a close frame, the ArraySegment must either refer to a null or empty segment, or must contain the close status code and message as defined in RFC 6455 section 5.5.1. Ping and Pong control frames (0x9, 0xA) MAY be sent, but the underlying server or middleware MUST silently discard them if it does not permit them.</p>
+<h3 id="74-websocketreceiveasync">7.4 WebSocketReceiveAsync</h3>
+<p>ReceiveAsync will return the current message type, if the full message was consumed, and the count of data copied to the given buffer. The values of messageType MUST match the opcodes defined in the RFC; 0x1 = Text, 0x2 = Binary, and 0x8 = Close. The server or middleware MUST perform any necessary un-masking of the data before returning it. If a close frame is received the count will be 0 and any close status or description will be set in the websocket environment dictionary under <code>websocket.ClientCloseStatus</code> and <code>websocket.ClientCloseDescription</code> if such values were sent by the client. Close data MUST NOT be copied to the users buffer. The server or middleware MUST NOT deliver Ping and Pong control frames (0x9, 0xA) to the application, they MUST be handled internally.</p>
+<h3 id="75-websocketcloseasync">7.5 WebSocketCloseAsync</h3>
+<p>Applications SHOULD follow the RFC guidelines regarding CloseAsync (section 5.5.1). The application SHOULD invoke CloseAsync when it is done sending outgoing data. The application MUST NOT attempt to send additional data after sending a close frame. The application MUST NOT attempt any further receives after a close frame is received. The application MAY abortively terminate the connection at any time by completing the WebSocketFunc return Task, optionally with an exception. The application SHOULD NOT invoke any of the delegates after it completes the returned task.</p>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../nodekit" class="btn btn-neutral float-right" title="io.nodekit"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Opaque" class="btn btn-neutral" title="Opaque"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+        
+      <span><a href="../Opaque" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../nodekit" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

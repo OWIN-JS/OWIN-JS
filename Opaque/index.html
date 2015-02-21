@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Opaque - OWIN-JS</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> OWIN-JS</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        <span>Specification</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Specification">OWIN-JS</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Extensions</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../CommonKeys">Common Keys</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">Opaque</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#opaque-stream-extension">Opaque Stream Extension</a></li>
+                            
+                                <li><a class="toctree-l3" href="#contents">Contents</a></li>
+                            
+                                <li><a class="toctree-l3" href="#1-introduction">1. Introduction</a></li>
+                            
+                                <li><a class="toctree-l3" href="#246-definitions">2. Definitions</a></li>
+                            
+                                <li><a class="toctree-l3" href="#346-detection">3. Detection</a></li>
+                            
+                                <li><a class="toctree-l3" href="#446-upgrade">4. Upgrade</a></li>
+                            
+                                <li><a class="toctree-l3" href="#546-consumption">5. Consumption</a></li>
+                            
+                                <li><a class="toctree-l3" href="#646-delegate-signature">6. Delegate Signature</a></li>
+                            
+                                <li><a class="toctree-l3" href="#746-usage">7. Usage</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Websocket">Websocket</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../nodekit">io.nodekit</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Opaque</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/OWIN-JS/spec/" class="icon icon-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <p><a href="http://owinjs.org"><img alt="OWIN-JS" src=".././owin-js.png" /></a></p>
+<h1 id="opaque-stream-extension">Opaque Stream Extension</h1>
+<p>OWIN-JS Opaque Stream Extension</p>
+<ul>
+<li>License : <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 Unported License</a></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<ol>
+<li>
+<p><a href="#1-introduction">Introduction</a></p>
+</li>
+<li>
+<p><a href="#2-definitions">Definitions</a></p>
+</li>
+<li>
+<p><a href="#3-detection">Detection</a></p>
+</li>
+<li>
+<p><a href="#4-upgrade">Upgrade</a></p>
+</li>
+<li>
+<p><a href="#5-consumption">Consumption</a></p>
+</li>
+<li>
+<p><a href="#6-delegate-signature">Delegate Signature</a></p>
+</li>
+<li>
+<p><a href="#7-usage">Usage</a></p>
+</li>
+</ol>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>This document outlines the recommended patterns for using opaque streams through the OWIN-JS interface. It depends on OWIN-JS version 1.0.0 (but may work with other versions), and uses the extension key mechanics as outlined in CommonKeys.</p>
+<h2 id="246-definitions">2. Definitions</h2>
+<p>Opaque Streams or Opaque Mode - Some servers allow a request to take direct ownership of the underlying connection after the initial HTTP handshake. This gives the application access to a bidirectional communication channel and the application is then responsible for employing its own protocol (e.g. WebSockets) to communicate with the client. Normally this involves sending a 101 response status code.</p>
+<h2 id="346-detection">3. Detection</h2>
+<p>In order for an application to use Opaque it MUST first detect support for the extension.</p>
+<h3 id="3461-startup">3.1 Startup</h3>
+<p>At startup the server SHOULD specify in the Properties server.Capabilities dictionary if Opaque is supported (see the table below). If the application does not see support for Opaque but does see support for Opaque Streams, it MAY insert a middleware to add Opaque support.</p>
+<h3 id="3462-per-request">3.2 Per Request</h3>
+<p>The Opaque capable server or middleware inspects each request as it arrives to determine if it is Opaque compatible (e.g. verb, headers, etc.). If so, it marks the request with a specific environment key (see the table below).</p>
+<table>
+<thead>
+<tr>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opaque.Upgrade</td>
+<td>An OpaqueUpgrade Action added by the server if the current request supports Opaque. See Delegate Signature</td>
+</tr>
+</tbody>
+</table>
+<h2 id="446-upgrade">4. Upgrade</h2>
+<p>When an application sees a request that is marked as Opaque capable and decides to upgrade to Opaque, it indicates this to the server or middleware by invoking the provided OpaqueUpgrade Action with parameters and an OpaqueFunc callback. This Action MUST immediately set the response status code to 101 and validate any input parameters and request state. The application then completes the AppFunc Task and allows the request pipeline to unwind.</p>
+<p>When the pipeline has unwound to the Opaque server or middleware it SHOULD perform the requested upgrade. Once the upgrade is complete the request has left HTTP processing and transitioned to Opaque processing. The original Environment dictionary and its content are presumed invalid and a new one MUST be provided to the OpaqueFunc callback with the keys listed as required in the table below (see Consumption).</p>
+<p>If the upgrade fails then the server or middleware SHOULD terminate the request. There is no guarantee that the OpaqueFunc provided by the application can or will be invoked in these scenarios, but the owin.CallCancelled CancellationToken MUST be signaled if the callback wont be.</p>
+<p>The OpaqueUpgrade parameters dictionary MAY be null if there are no parameters to pass in. If not null, it MUST be mutable and use ordinal key comparison.</p>
+<p>In addition to these keys the host, server, middleware, application, etc. may add arbitrary data associated with the Opaque Upgrade to the parameters dictionary. Guidelines for additional keys and a list of commonly defined keys can be found in CommonKeys.</p>
+<h2 id="546-consumption">5. Consumption</h2>
+<p>When the server or middleware invoke the OpaqueFunc it provides a new Opaque Environment dictionary (see Delegate Signature). The Opaque Environment dictionary has the same requirements as the OWIN request Environment dictionary, namely that it MUST be non-null, mutable, use ordinal key comparison, and MUST contain the keys and values where listed as required in the table below.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Required</th>
+<th>Object Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Yes</td>
+<td>opaque.Stream</td>
+<td>A duplex Stream for sending and receiving data.</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>opaque.Version</td>
+<td>The string value 1.0 indicating version 1.0 of this OWIN-JS Opaque extension.</td>
+</tr>
+<tr>
+<td align="left">Yes</td>
+<td>opaque.CallCancelled</td>
+<td>A CancellationToken provided by the server to signal that opaque streaming has been canceled/aborted.</td>
+</tr>
+</tbody>
+</table>
+<p>In addition to these keys the host, server, middleware, application, etc. may add arbitrary data associated with the Opaque context to the environment dictionary. Guidelines for additional keys and a list of commonly defined keys can be found in CommonKeys</p>
+<h2 id="646-delegate-signature">6. Delegate Signature</h2>
+<p>The opaque stream body delegate signature is as follows:</p>
+<p><code>C#</code></p>
+<pre><code>using OpaqueUpgrade =
+    Action
+    &lt;
+        IDictionary&lt;string, object&gt;, // Parameters
+        Func // OpaqueFunc callback
+        &lt;
+            IDictionary&lt;string, object&gt;, // Opaque environment
+            Task // Complete
+        &gt;
+    &gt;;
+
+using OpaqueFunc =
+    Func
+    &lt;
+        IDictionary&lt;string, object&gt;, // Opaque Environment
+        Task // Complete
+    &gt;;
+</code></pre>
+<h2 id="746-usage">7. Usage</h2>
+<p>Once the upgrade is complete the consumer operates their own protocol (e.g. WebSockets) over the given Stream. On completion (success or fail), the application MUST complete or fail the returned Task. The consumer SHOULD NOT close the given Stream, the provider (the server or middleware) owns these and is responsible for any cleanup on completion of the OpaqueFunc. The application SHOULD NOT continue to access the Stream once it completes the returned task.</p>
+<p>If the <code>oapaque.CallCancelled</code> CancellationToken is cancelled, the application SHOULD promptly terminate processing and complete the returned Task.</p>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Websocket" class="btn btn-neutral float-right" title="Websocket"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../CommonKeys" class="btn btn-neutral" title="Common Keys"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+        
+      <span><a href="../CommonKeys" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../Websocket" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

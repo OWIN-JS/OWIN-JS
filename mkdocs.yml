@@ -1,0 +1,14 @@
+site_name: OWIN-JS
+theme: readthedocs
+repo_url: https://github.com/OWIN-JS/spec/
+include_search: true
+docs_dir: '.'
+site_dir: 'dest'
+pages:
+- ['index.md', 'Home']
+- ['Specification.md', 'Specification', 'OWIN-JS']
+- ['CommonKeys.md', 'Extensions', 'Common Keys']
+- ['Opaque.md', 'Extensions', 'Opaque']
+- ['Websocket.md' , 'Extensions', 'Websocket']
+- ['nodekit.md' , 'Extensions', 'io.nodekit']
+theme:  readthedocs

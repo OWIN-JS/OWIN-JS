@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Common Keys - OWIN-JS</title>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script>
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+  </style> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> OWIN-JS</a>
+        
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        <span>Specification</span>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Specification">OWIN-JS</a>
+                    
+                </li>
+            
+        
+
+    
+        
+        <span>Extensions</span>
+            
+                <li class="toctree-l1 current">
+                    <a class="current" href=".">Common Keys</a>
+                    
+                        <ul>
+                        
+                            <li class="toctree-l2"><a href="#common-keys">Common Keys</a></li>
+                            
+                                <li><a class="toctree-l3" href="#contents">Contents</a></li>
+                            
+                                <li><a class="toctree-l3" href="#1-overview">1. Overview</a></li>
+                            
+                                <li><a class="toctree-l3" href="#246-key-usage-guidelines">2. Key usage guidelines</a></li>
+                            
+                                <li><a class="toctree-l3" href="#346-naming-conventions">3. Naming conventions</a></li>
+                            
+                                <li><a class="toctree-l3" href="#446-value-conventions">4. Value conventions</a></li>
+                            
+                                <li><a class="toctree-l3" href="#5-capabilities-announcement-and-detection">5. Capabilities announcement and detection</a></li>
+                            
+                                <li><a class="toctree-l3" href="#646-common-keys">6. Common keys</a></li>
+                            
+                        
+                        </ul>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Opaque">Opaque</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../Websocket">Websocket</a>
+                    
+                </li>
+            
+                <li class="toctree-l1 ">
+                    <a class="" href="../nodekit">io.nodekit</a>
+                    
+                </li>
+            
+        
+
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href=".."></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    <li>Common Keys</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="https://github.com/OWIN-JS/spec/" class="icon icon-github"> Edit on GitHub</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              <p><a href="http://owinjs.org"><img alt="OWIN-JS" src=".././owin-js.png" /></a></p>
+<h1 id="common-keys">Common Keys</h1>
+<ul>
+<li>Author : OWIN-JS working group</li>
+<li>Ported from: <a href="http://owin.org">OWIN</a> (authored by OWIN working group)</li>
+<li>Copyright : OWIN-JS contributors, OWIN Contributors</li>
+<li>License : <a href="http://creativecommons.org/licenses/by/3.0/us/">Creative Commons Attribution 3.0 Unported License</a></li>
+</ul>
+<h2 id="contents">Contents</h2>
+<ol>
+<li>
+<p><a href="#1-overview">Overview</a></p>
+</li>
+<li>
+<p><a href="#2-key-usage-guidelines">Key usage guidelines</a></p>
+</li>
+<li>
+<p><a href="#3-naming-conventions">Naming conventions</a></p>
+</li>
+<li>
+<p><a href="#4-value-conventions">Value conventions</a></p>
+</li>
+<li>
+<p><a href="#5-capabilities-announcement-and-detection">Capabilities announcement and detection</a></p>
+</li>
+<li>
+<p><a href="#6-common-keys">Common keys</a></p>
+</li>
+</ol>
+<h2 id="1-overview">1. Overview</h2>
+<p>This document contains guidelines for adding functionality to OWIN-JS based servers or application via additional keys in the Dictionary object (e.g. the request environment or the startup properties). This includes naming conventions, value conventions, and a list of know common keys and their semantics.</p>
+<p>These guidelines and keys are provided independently of the OWIN specification as the list of common keys below is expected to grow independently of the OWIN standard.</p>
+<p>The following guidelines apply to the keys and values specifically listed below, as well as for custom keys and values defined by individual implementations.</p>
+<h2 id="246-key-usage-guidelines">2. Key usage guidelines</h2>
+<p>The Dictionary object can be used to extend the OWIN-JS interface with additional functionality.</p>
+<ul>
+<li>
+<p>All keys MUST be compared using Ordinal.</p>
+</li>
+<li>
+<p>All keys not defined in the OWIN-JS standard are considered extension keys and are strictly optional.</p>
+</li>
+<li>
+<p>Implementers SHOULD clearly document what keys their component will populate, under what conditions, and the types and semantics of the associated values.</p>
+</li>
+</ul>
+<h2 id="346-naming-conventions">3. Naming conventions</h2>
+<p>The Dictionary objects are open and mutable for storing arbitrary data. To avoid collisions between components, the following key naming conventions SHOULD be honored.</p>
+<ul>
+<li>
+<p>Key names are Ordinal (case sensitive, culture insensitive) strings.</p>
+</li>
+<li>
+<p>Most keys SHOULD be composed of a lower case prefix, a period, and a Pascal cased descriptor (e.g. owin.RequestMethod).</p>
+</li>
+<li>
+<p>A number of common keys are listed later in this document. These keys use general prefixes such as server.* to indicate that this is data that may be provided by many different implementations. Implementers SHOULD favor using such shared keys rather than defining their own.</p>
+</li>
+<li>
+<p>Keys that refer to a common technology group SHOULD be prefixed with a name that identifies that technology. E.g. ssl.<em> or websocket.</em>.</p>
+</li>
+<li>
+<p>Keys that expose functionality specific to a single implementation SHOULD use a prefix that clearly identifies that implementation. E.g. <code>iis.*</code>, <code>httplistener.*</code>, <code>webapi.*</code>, <code>mymiddleware.*</code>.</p>
+</li>
+<li>
+<p>Implementers SHOULD avoid defining keys that differ only subtly from existing keys (e.g. casing, spelling, etc.).</p>
+</li>
+<li>
+<p>Implementers SHOULD include a technology specific version key that clearly identifies not only the version of the underlying component, but also the version of any OWIN specific wrapper of that component. E.g. mshttplistener.Version: .NET 4.0, OWIN wrapper 1.0.1. This is intended to help consumers cross reference documentation with implementations, facilitating both development and debugging.</p>
+</li>
+<li>
+<p>The fully qualified name of a type MAY be used as the key, but only if it is reasonable to assume that there will only ever be one instance of this type per request. E.g. <code>System.Net.HttpListenerContext</code> is guaranteed to be unique per request, whereas <code>System.Security.Cryptography.X509Certificates.X509Certificate</code> identifies a specific type but it is ambiguous if the value represents the client certificate, the server certificate, or a certificate for some other purpose.</p>
+</li>
+</ul>
+<h2 id="446-value-conventions">4. Value conventions</h2>
+<p>The type of each value SHOULD be clearly documented by the implementer.</p>
+<ul>
+<li>
+<p>Values MAY be of a type derived from the type specified in documentation, but the documentation SHOULD state under what conditions it is reasonable to expect such types to be available. Consumers may attempt to cast to more specific derived types (safely using is or as rather than an explicit cast), but SHOULD fall back to the documented base type wherever possible.</p>
+</li>
+<li>
+<p>Null values or empty strings SHOULD be treated the same as if the key were not present. Every key SHOULD have at least one defined value, even if the value is the string "true".</p>
+</li>
+<li>
+<p>Implementers SHOULD avoid populating keys associated with null values or empty strings, but SHOULD be tolerant of such values when retrieving data.</p>
+</li>
+<li>
+<p>Implementers MUST NOT overload a single key with multiple types (other than derived types as discussed above). If there are multiple possible representations, use separate keys to clearly identify them.</p>
+</li>
+<li>
+<p>Avoid using types that are likely to change signatures between versions.</p>
+</li>
+<li>
+<p>Prefer base types (e.g. int, string, etc.) or common types in the .NET framework that have existed for multiple releases (e.g. Stream).</p>
+</li>
+<li>
+<p>Values in the request Environment collection are assumed to be alive and accurate only for the lifetime of the request. Consumers SHOULD NOT retain or attempt to use values after a request has completed or failed. Where a value advertises a specific capability, that capability is only assumed to be available for that request instance and SHOULD be re-verified on future requests.</p>
+</li>
+<li>
+<p>Global capabilities or data SHOULD be communicated as described in section 5 below.</p>
+</li>
+</ul>
+<p>Where any specific value cleanup is required (e.g. Dispose), such cleanup is the responsibility of the component that originally added the value. This should be taken care of as the stack unwinds after a request has completed or failed.</p>
+<h2 id="5-capabilities-announcement-and-detection">5. Capabilities announcement and detection</h2>
+<p>It is important for applications to be able to determine if a specific feature is supported by the current server or middleware. The following pattern is recommended for announcing and detecting feature/extension support.</p>
+<ul>
+<li>
+<p>At startup the server SHOULD create a <code>server.Capabilities</code> object dictionary in the startup Properties dictionary.</p>
+</li>
+<li>
+<p>This capabilities dictionary is for static capability details that do not change on a per-request basis.</p>
+</li>
+<li>
+<p>The same instance of the capabilities dictionary SHOULD also be included in each request environment dictionary.</p>
+</li>
+<li>
+<p>Each extension SHOULD add to the capabilities Dictionary a <code>featurename.Version</code> key with the associated string value of the latest version of that extension supported (e.g. 1.2).</p>
+</li>
+<li>
+<p>If extensions have defined additional keys used to indicate details, the implementer SHOULD add to the capabilities Dicitonary a <code>featurename.Support</code> Dictionary containing the detailed featurename.FeatureDetail keys and their associated values.</p>
+</li>
+<li>
+<p>Per-request feature keys and values should be included directly in the environment dictionary.</p>
+</li>
+</ul>
+<h2 id="646-common-keys">6. Common keys</h2>
+<p>Keys and values listed here are those that are anticipated to be common across multiple implementations, but are not strictly required for basic operations.</p>
+<table>
+<thead>
+<tr>
+<th>Object Name</th>
+<th>Type</th>
+<th>Startup</th>
+<th align="right">Request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ssl.ClientCertificate</td>
+<td>X509Certificate</td>
+<td></td>
+<td align="right">X</td>
+<td>The client certificate provided during HTTPS SSL negotiation.</td>
+</tr>
+<tr>
+<td>server.RemoteIpAddress</td>
+<td>String</td>
+<td></td>
+<td align="right">X</td>
+<td>The IP Address of the remote client. E.g. 192.168.1.1 or ::1</td>
+</tr>
+<tr>
+<td>server.RemotePort</td>
+<td>String</td>
+<td></td>
+<td align="right">X</td>
+<td>The port of the remote client. e.g. 1234</td>
+</tr>
+<tr>
+<td>server.LocalIpAddress</td>
+<td>String</td>
+<td></td>
+<td align="right">X</td>
+<td>The local IP Address the request was received on. E.g. 127.0.0.1 or ::1</td>
+</tr>
+<tr>
+<td>server.LocalPort</td>
+<td>String</td>
+<td></td>
+<td align="right">X</td>
+<td>The port the request was received on. E.g. 80</td>
+</tr>
+<tr>
+<td>server.IsLocal</td>
+<td>Boolean</td>
+<td></td>
+<td align="right">X</td>
+<td>Was the request sent from the same machine? E.g. true or false.</td>
+</tr>
+<tr>
+<td>host.TraceOutput</td>
+<td><code>.log()</code> / TextWriter</td>
+<td>X</td>
+<td align="right">X</td>
+<td>A tracing output that may be provided by the host.</td>
+</tr>
+<tr>
+<td>host.Addresses</td>
+<td>List Object</td>
+<td>X</td>
+<td align="right"></td>
+<td>A list of per-address server configuration. The following keys are defined with string values: scheme, host, port, path.</td>
+</tr>
+<tr>
+<td>server.Capabilities</td>
+<td>Dictionary Object</td>
+<td>X</td>
+<td align="right">X</td>
+<td>Global capabilities that do not change on a per-request basis. See Section 5 above.</td>
+</tr>
+<tr>
+<td>server.OnSendingHeaders</td>
+<td>function</td>
+<td></td>
+<td align="right">X</td>
+<td>Allows the caller to register an Action callback that fires as a last chance to modify response headers, status code, reason phrase, or protocol. The object parameter is an optional state object that will passed to the callback</td>
+</tr>
+<tr>
+<td>websocket.*</td>
+<td></td>
+<td>X</td>
+<td align="right">X</td>
+<td>See the WebSocket extension</td>
+</tr>
+<tr>
+<td>sendfile.*</td>
+<td></td>
+<td>X</td>
+<td align="right">X</td>
+<td>See the SendFile extension</td>
+</tr>
+<tr>
+<td>opaque.*</td>
+<td></td>
+<td>X</td>
+<td align="right">X</td>
+<td>See the Opaque extension</td>
+</tr>
+</tbody>
+</table>
+
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Opaque" class="btn btn-neutral float-right" title="Opaque"/>Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../Specification" class="btn btn-neutral" title="OWIN-JS"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+        
+            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+        
+      <span><a href="../Specification" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="../Opaque" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>
