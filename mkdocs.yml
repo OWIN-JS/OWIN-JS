@@ -4,6 +4,7 @@ repo_url: https://github.com/OWIN-JS/spec/
 include_search: true
 docs_dir: '.'
 site_dir: 'dest'
+site_favicon: favicon.ico
 pages:
 - ['index.md', 'Home']
 - ['Specification.md', 'Specification', 'OWIN-JS']
