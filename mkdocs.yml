@@ -13,3 +13,4 @@ pages:
 - ['Websocket.md' , 'Extensions', 'Websocket']
 - ['nodekit.md' , 'Extensions', 'io.nodekit']
 theme:  readthedocs
+theme_dir: _theme
