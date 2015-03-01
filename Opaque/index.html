@@ -166,7 +166,7 @@
 </li>
 </ol>
 <h2 id="1-introduction">1. Introduction</h2>
-<p>This document outlines the recommended patterns for using opaque streams through the OWIN-JS interface. It depends on OWIN-JS version 1.0.0 (but may work with other versions), and uses the extension key mechanics as outlined in CommonKeys.</p>
+<p>This document outlines the recommended patterns for using opaque streams through the OWIN-JS interface. It depends on OWIN-JS version 1.0 or later, and uses the extension key mechanics as outlined in CommonKeys.</p>
 <h2 id="246-definitions">2. Definitions</h2>
 <p>Opaque Streams or Opaque Mode - Some servers allow a request to take direct ownership of the underlying connection after the initial HTTP handshake. This gives the application access to a bidirectional communication channel and the application is then responsible for employing its own protocol (e.g. WebSockets) to communicate with the client. Normally this involves sending a 101 response status code.</p>
 <h2 id="346-detection">3. Detection</h2>

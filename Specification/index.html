@@ -68,9 +68,9 @@
                             
                                 <li><a class="toctree-l3" href="#746-versioning">7. Versioning</a></li>
                             
-                                <li><a class="toctree-l3" href="#8-extensions">8. Extensions</a></li>
+                                <li><a class="toctree-l3" href="#846-extensions">8. Extensions</a></li>
                             
-                                <li><a class="toctree-l3" href="#9-real-world-usage">9. Real World Usage</a></li>
+                                <li><a class="toctree-l3" href="#946-real-world-usage">9. Real World Usage</a></li>
                             
                         
                         </ul>
@@ -142,6 +142,7 @@
               <p><a href="http://owinjs.org"><img alt="OWIN-JS" src=".././owin-js.png" /></a></p>
 <h1 id="specification-v11-release">Specification v1.1 RELEASE</h1>
 <ul>
+<li>Title: Open Web Interface for Node.js (OWIN-JS)</li>
 <li>Author : OWIN-JS working group</li>
 <li>Ported from: <a href="http://owin.org">OWIN</a> (authored by OWIN working group)</li>
 <li>Copyright : OWIN-JS contributors, OWIN Contributors</li>
@@ -169,10 +170,12 @@
 <p>6.2. <a href="#62-server-errors">Server Errors</a></p>
 <p>7. <a href="#7-versioning">Versioning</a></p>
 <p>8. <a href="#8-extensions">Extensions</a></p>
+<p>9. <a href="#9-real-world-usage">Real World Usage</a></p>
 <h2 id="146-overview">1. Overview</h2>
-<p>This document defines OWIN-JS, a standard framework for REST servers for io.js, Node.js and .NET.  </p>
-<p>OWIN-JS is targeted for both HTTP and COAP servers, and can be a drop-in replacement for existing frameworks such as Connect/Express.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, etc.) I</p>
-<p>OWIN-JS is a port of the <a href="http://owin.org">OWIN</a> specification, but expands the REST philosophy to web servers, internet of things, etc.</p>
+<p>This document defines the Open Web Interface for Node.js (OWIN-JS), a standard framework for REST servers for io.js, Node.js and backwards compatible with .NET.  </p>
+<p>OWIN-JS is targeted for multiple transport providers including HTTP and COAP servers, and can be a drop-in replacement for existing frameworks such as Connect/Express on Node.js.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, etc.) I</p>
+<p>OWIN-JS is a port of the <a href="http://owin.org">OWIN</a> specification, but expands the REST philosophy to web servers, application clients, desktop/mobile apps, etc.  </p>
+<p>See also <a href="http://owind.org">OWIN-D</a> for an extension of this OWIN-JS specification that specifically targets devices and accessories in the Internet of Things, and see example applications such as <a href="http://nodekit.io">nodekit.io</a> that show how OWIN-JS can enable a standalone desktop app.</p>
 <p>OWIN-JS is defined in terms of a delegate structure. There is no assembly. Implementing either the host or application side the OWIN-JS spec does not introduce a dependency to a project.</p>
 <p>In this document, the Node.js <code>function</code> and C# <code>Action</code>/<code>Func</code> syntax is used to notate some delegate structures.   However, the delegate structure could be equivalently represented with other native functions, CLR interfaces, or named delegates. This is by design; when implementing OWIN-JS, choose a delegate representation that works for you and your stack.</p>
 <p>The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in <a href="http://www.ietf.org/rfc/rfc2119.txt">RFC 2119</a>.</p>
@@ -543,7 +546,7 @@ if (Environment["owin.RequestQueryString"] != "")
 <p>The keys listed in <a href="../CommonKeys">CommonKeys</a> are strictly optional. Additions may be made there without directly affecting the OWIN-JS standard or version number.</p>
 </li>
 </ul>
-<h2 id="8-extensions">8. Extensions</h2>
+<h2 id="846-extensions">8. Extensions</h2>
 <table>
 <thead>
 <tr>
@@ -574,7 +577,7 @@ if (Environment["owin.RequestQueryString"] != "")
 </tr>
 </tbody>
 </table>
-<h2 id="9-real-world-usage">9. Real World Usage</h2>
+<h2 id="946-real-world-usage">9. Real World Usage</h2>
 <table>
 <thead>
 <tr>

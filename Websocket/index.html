@@ -166,7 +166,7 @@
 </li>
 </ol>
 <h2 id="1-introduction">1. Introduction</h2>
-<p>This document outlines the recommended patterns for using WebSockets through the OWIN-JS interface. It depends on OWIN-JS v1.0.0 (but may work with other versions), the OWIN-JS opaque streams extension, and uses the extension key mechanics as outlined in CommonKeys.</p>
+<p>This document outlines the recommended patterns for using WebSockets through the OWIN-JS interface. It depends on OWIN-JS v1.0 or later, the OWIN-JS opaque streams extension, and uses the extension key mechanics as outlined in CommonKeys.</p>
 <h2 id="246-definitions">2. Definitions</h2>
 <p>WebSocket - Defined in RFC 6455, a web socket is a bidirectional, framed communication channel that uses HTTP for its initial handshake.</p>
 <p>Opaque Stream - Some servers allow a request to take direct ownership of the underlying connection after the initial HTTP handshake. This gives the application access to a bidirectional opaque stream and the application is then responsible for employing its own protocol (e.g. WebSockets) to communicate with the client.</p>
