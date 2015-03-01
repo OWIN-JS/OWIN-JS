@@ -1,7 +1,7 @@
 [![OWIN-JS](./owin-js.png)](http://owinjs.org)
 ## About
 
-This is the official repository of the OWIN-JS (Open Web Interface for Node.js) Specification. 
+This is the official repository of the Open Web Interface for Node.js (OWIN-JS) Specification. 
 
 OWIN-JS defines a standard framework for REST servers for io.js and Node.js.  
 It is a port of the [OWIN](http://owin.org) specification, but expands the REST philosophy to web servers, application clients, desktop/mobile apps, etc. 

@@ -1,5 +1,5 @@
 [![OWIN-JS](./owin-js.png)](http://owinjs.org)
-#Specification v1.1 RELEASE
+#Specification v1.1.0 RELEASE
 * Title: Open Web Interface for Node.js (OWIN-JS)
 * Author : OWIN-JS working group
 * Ported from: [OWIN](http://owin.org) (authored by OWIN working group)
