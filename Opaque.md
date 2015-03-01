@@ -25,7 +25,7 @@ OWIN-JS Opaque Stream Extension
 ## 1. Introduction
 
 
-This document outlines the recommended patterns for using opaque streams through the OWIN-JS interface. It depends on OWIN-JS version 1.0.0 (but may work with other versions), and uses the extension key mechanics as outlined in CommonKeys.
+This document outlines the recommended patterns for using opaque streams through the OWIN-JS interface. It depends on OWIN-JS version 1.0 or later, and uses the extension key mechanics as outlined in CommonKeys.
 
 ## 2\. Definitions
 

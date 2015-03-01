@@ -116,8 +116,8 @@ Keys and values listed here are those that are anticipated to be common across m
 | websocket.* |   | X | X  | See the WebSocket extension|
 | sendfile.* |   | X | X  | See the SendFile extension|
 | opaque.* |   | X | X  | See the Opaque extension|
-
-
+| coap.* |   | X | X  | See the CoAP extension or limerun/lime-coap|
+| owind.* |   | X | X  | See the OWIN-D extension|
 
    [1]: #1-overview
    [2]: #2-key-usage-guidelines

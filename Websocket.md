@@ -24,7 +24,7 @@ OWIN-JS WebSocket Extension
 
 ## 1. Introduction
 
-This document outlines the recommended patterns for using WebSockets through the OWIN-JS interface. It depends on OWIN-JS v1.0.0 (but may work with other versions), the OWIN-JS opaque streams extension, and uses the extension key mechanics as outlined in CommonKeys.
+This document outlines the recommended patterns for using WebSockets through the OWIN-JS interface. It depends on OWIN-JS v1.0 or later, the OWIN-JS opaque streams extension, and uses the extension key mechanics as outlined in CommonKeys.
 
 
 ## 2\. Definitions

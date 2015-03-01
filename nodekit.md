@@ -21,7 +21,7 @@
 
 ## 1. Overview
 
-This document contains additional keys used by nodeAppKit reference application.
+This document contains additional keys used by the nodekit.io reference application.
 
 
 ## 2\. Key usage guidelines
@@ -86,7 +86,7 @@ Keys and values listed here are those that are anticipated to be common across m
 
 | Object Name |  Type  | Startup | Request | Description |
 | ---| --: | :-: | :-:| --- |
-| nodekit.Version | String | X | X  | "1.0"|
+| io.nodekit.Version | String | X | X  | "1.0"|
 
 
    [1]: #1-overview

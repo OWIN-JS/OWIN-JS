@@ -1,5 +1,6 @@
 [![OWIN-JS](./owin-js.png)](http://owinjs.org)
 #Specification v1.1 RELEASE
+* Title: Open Web Interface for Node.js (OWIN-JS)
 * Author : OWIN-JS working group
 * Ported from: [OWIN](http://owin.org) (authored by OWIN working group)
 * Copyright : OWIN-JS contributors, OWIN Contributors
@@ -47,15 +48,19 @@
 
 7\. [Versioning][20]
 
-8\. [Extensions](#8-extensions)
+8\. [Extensions][201]
+
+9\. [Real World Usage][202]
 
 ## 1\. Overview
 
-This document defines OWIN-JS, a standard framework for REST servers for io.js, Node.js and .NET.  
+This document defines the Open Web Interface for Node.js (OWIN-JS), a standard framework for REST servers for io.js, Node.js and backwards compatible with .NET.  
 
-OWIN-JS is targeted for both HTTP and COAP servers, and can be a drop-in replacement for existing frameworks such as Connect/Express.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, etc.) I
+OWIN-JS is targeted for multiple transport providers including HTTP and COAP servers, and can be a drop-in replacement for existing frameworks such as Connect/Express on Node.js.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, etc.) I
 
-OWIN-JS is a port of the [OWIN](http://owin.org) specification, but expands the REST philosophy to web servers, internet of things, etc.
+OWIN-JS is a port of the [OWIN](http://owin.org) specification, but expands the REST philosophy to web servers, application clients, desktop/mobile apps, etc.  
+
+See also [OWIN-D](http://owind.org) for an extension of this OWIN-JS specification that specifically targets devices and accessories in the Internet of Things, and see example applications such as [nodekit.io](http://nodekit.io) that show how OWIN-JS can enable a standalone desktop app.
 
 OWIN-JS is defined in terms of a delegate structure. There is no assembly. Implementing either the host or application side the OWIN-JS spec does not introduce a dependency to a project.
 
@@ -322,7 +327,7 @@ Future updates to this standard may contain breaking changes (e.g. signature cha
 
 * The keys listed in [CommonKeys][25] are strictly optional. Additions may be made there without directly affecting the OWIN-JS standard or version number.
 
-## 8. Extensions
+## 8\. Extensions
 
 | Extension | Description |
 | --------- | ----------- |
@@ -332,7 +337,7 @@ Future updates to this standard may contain breaking changes (e.g. signature cha
 | [WebSocket](./Websocket.md)| OWIN-JS WebSocket Extension.| 
 | [nodekit](./nodekit.md)| Extensions to support the nodekit.io project| 
 
-## 9. Real World Usage
+## 9\. Real World Usage
 
 | Extension | Description |
 | --------- | ----------- |
@@ -360,6 +365,8 @@ Future updates to this standard may contain breaking changes (e.g. signature cha
    [18]: #61-application-errors
    [19]: #62-server-errors
    [20]: #7-versioning
+   [201]: #8-extensions
+   [202]: #9-real-world-usage
    [21]: http://www.ietf.org/rfc/rfc2119.txt
    [22]: #35-response-body
    [23]: http://www.ietf.org/rfc/rfc2616.txt
