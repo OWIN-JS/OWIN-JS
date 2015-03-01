@@ -22,7 +22,7 @@ OWIN-JS is the specification and contains no implementation source code.   Howev
 ## Specifications
 [OWIN-JS Specification](./Specification.md)  (this repository)
 
-[OWIN-D Specification](./Specification.md) (Extends OWIN-JS for Networked Devices and Internet of Things) 
+[OWIN-D Specification](http://owind.org/Specification) (Extends OWIN-JS for Networked Devices and Internet of Things) 
 
 [Original OWIN Specification for reference](http://owin.org/spec/spec/owin-1.0.0.html) (for .NET only)
 
