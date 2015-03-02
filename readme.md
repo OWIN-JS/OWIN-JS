@@ -1,4 +1,4 @@
-[![OWIN-JS](./owin-js.png)](http://owinjs.org)
+[![OWIN-JS](http://owinjs.org/owin-js.png)](http://owinjs.org)
 
 ## This Repository
 
