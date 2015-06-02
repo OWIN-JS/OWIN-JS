@@ -8,11 +8,11 @@ site_favicon: favicon.ico
 pages:
 - Home: 'index.md'
 - Specification:
-	- 'OWIN-JS: 'Specification.md'
+    - 'OWIN-JS: 'Specification.md'
 - Extensions:
-	- 'Common Keys: 'CommonKeys.md'
-	- 'Opaque: 'Opaque.md'
-	- 'Websocket: 'Websocket.md'
-	- 'io.nodekit: 'nodekit.md'
+    - 'Common Keys: 'CommonKeys.md'
+    - 'Opaque: 'Opaque.md'
+    - 'Websocket: 'Websocket.md'
+    - 'io.nodekit: 'nodekit.md'
 theme:  readthedocs
 theme_dir: _theme
