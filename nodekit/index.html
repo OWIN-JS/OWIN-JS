@@ -8,24 +8,28 @@
   <title>io.nodekit - OWIN-JS</title>
   
 
+  <link rel="shortcut icon" href="../favicon.ico">
+  
+
   
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="../css/highlight.css">
-  <link href="../_theme/css/theme_extra.css" rel="stylesheet">
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "nodekit"
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../js/highlight.pack.js"></script>
-  <script src="../js/theme.js"></script>
+  <script src="../js/theme.js"></script> 
 
-  <style>
-    body {font-size: 90%;}
-    pre, code {font-size: 100%;}
-    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
-  </style> 
+  
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -36,72 +40,96 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> OWIN-JS</a>
-        
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-      <ul class="current">
-    
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Home</a>
         
-        <span>Specification</span>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../Specification">OWIN-JS</a>
-                    
-                </li>
-            
-        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Specification</span></li>
 
-    
         
-        <span>Extensions</span>
             
-                <li class="toctree-l1 ">
-                    <a class="" href="../CommonKeys">Common Keys</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../Opaque">Opaque</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 ">
-                    <a class="" href="../Websocket">Websocket</a>
-                    
-                </li>
-            
-                <li class="toctree-l1 current">
-                    <a class="current" href=".">io.nodekit</a>
-                    
-                        <ul>
-                        
-                            <li class="toctree-l2"><a href="#nodekitio-keys">nodekit.io Keys</a></li>
-                            
-                                <li><a class="toctree-l3" href="#contents">Contents</a></li>
-                            
-                                <li><a class="toctree-l3" href="#1-overview">1. Overview</a></li>
-                            
-                                <li><a class="toctree-l3" href="#246-key-usage-guidelines">2. Key usage guidelines</a></li>
-                            
-                                <li><a class="toctree-l3" href="#346-naming-conventions">3. Naming conventions</a></li>
-                            
-                                <li><a class="toctree-l3" href="#446-value-conventions">4. Value conventions</a></li>
-                            
-                                <li><a class="toctree-l3" href="#5-capabilities-announcement-and-detection">5. Capabilities announcement and detection</a></li>
-                            
-                                <li><a class="toctree-l3" href="#646-nodekit-keys">6. nodekit keys</a></li>
-                            
-                        
-                        </ul>
-                    
-                </li>
-            
+    <li class="toctree-l1 ">
+        <a class="" href="../Specification/">OWIN-JS</a>
         
+    </li>
 
-    
-</ul>
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Extensions</span></li>
 
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../CommonKeys/">Common Keys</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Opaque/">Opaque</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../Websocket/">Websocket</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">io.nodekit</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#nodekitio-keys">nodekit.io Keys</a></li>
+                
+                    <li><a class="toctree-l4" href="#contents">Contents</a></li>
+                
+                    <li><a class="toctree-l4" href="#1-overview">1. Overview</a></li>
+                
+                    <li><a class="toctree-l4" href="#246-key-usage-guidelines">2. Key usage guidelines</a></li>
+                
+                    <li><a class="toctree-l4" href="#346-naming-conventions">3. Naming conventions</a></li>
+                
+                    <li><a class="toctree-l4" href="#446-value-conventions">4. Value conventions</a></li>
+                
+                    <li><a class="toctree-l4" href="#5-capabilities-announcement-and-detection">5. Capabilities announcement and detection</a></li>
+                
+                    <li><a class="toctree-l4" href="#646-nodekit-keys">6. nodekit keys</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
       </div>
       &nbsp;
     </nav>
@@ -110,8 +138,8 @@
 
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
-        <a href=".."></a>
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">OWIN-JS</a>
       </nav>
 
       
@@ -120,20 +148,28 @@
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Extensions &raquo;</li>
+        
+      
+    
     <li>io.nodekit</li>
-      <li class="wy-breadcrumbs-aside">
+    <li class="wy-breadcrumbs-aside">
+      
         
-          
-            <a href="https://github.com/OWIN-JS/spec/" class="icon icon-github"> Edit on GitHub</a>
-          
+          <a href="https://github.com/OWIN-JS/spec/" class="icon icon-github"> Edit on GitHub</a>
         
-      </li>
+      
+    </li>
   </ul>
   <hr/>
 </div>
           <div role="main">
             <div class="section">
-              <p><a href="http://owinjs.org"><img alt="OWIN-JS" src=".././owin-js.png" /></a></p>
+              
+                <p><a href="http://owinjs.org"><img alt="OWIN-JS" src="../owin-js.png" /></a></p>
 <h1 id="nodekitio-keys">nodekit.io Keys</h1>
 <ul>
 <li>Author : OWIN-JS working group</li>
@@ -254,7 +290,7 @@
 </tr>
 </tbody>
 </table>
-
+              
             </div>
           </div>
           <footer>
@@ -262,7 +298,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../Websocket" class="btn btn-neutral" title="Websocket"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Websocket/" class="btn btn-neutral" title="Websocket"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -287,12 +323,15 @@
 
 <div class="rst-versions" role="note" style="cursor: pointer">
     <span class="rst-current-version" data-toggle="rst-current-version">
-        
-            <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
-        
-      <span><a href="../Websocket" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+          <a class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../Websocket/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
     </span>
 </div>
+
 </body>
 </html>
