@@ -6,11 +6,13 @@ docs_dir: '.'
 site_dir: 'dest'
 site_favicon: favicon.ico
 pages:
-- ['index.md', 'Home']
-- ['Specification.md', 'Specification', 'OWIN-JS']
-- ['CommonKeys.md', 'Extensions', 'Common Keys']
-- ['Opaque.md', 'Extensions', 'Opaque']
-- ['Websocket.md' , 'Extensions', 'Websocket']
-- ['nodekit.md' , 'Extensions', 'io.nodekit']
+- Home: 'index.md'
+- Specification:
+	- 'OWIN-JS: 'Specification.md'
+- Extensions:
+	- 'Common Keys: 'CommonKeys.md'
+	- 'Opaque: 'Opaque.md'
+	- 'Websocket: 'Websocket.md'
+	- 'io.nodekit: 'nodekit.md'
 theme:  readthedocs
 theme_dir: _theme
