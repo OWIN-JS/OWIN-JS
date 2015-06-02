@@ -1,5 +1,5 @@
 [![OWIN-JS](./owin-js.png)](http://owinjs.org)
-#Specification v1.1.0 RELEASE
+#Specification v1.2.0 RELEASE
 * Title: Open Web Interface for Node.js (OWIN-JS)
 * Author : OWIN-JS working group
 * Ported from: [OWIN](http://owin.org) (authored by OWIN working group)
@@ -56,7 +56,7 @@
 
 This document defines the Open Web Interface for Node.js (OWIN-JS), a standard framework for REST servers for io.js, Node.js and backwards compatible with .NET.  
 
-OWIN-JS is targeted for multiple transport providers including HTTP and COAP servers, and can be a drop-in replacement for existing frameworks such as Connect/Express on Node.js.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, etc.) I
+OWIN-JS is targeted for multiple transport providers including HTTP, COAP and MQTT servers, and can be a drop-in replacement for existing frameworks such as Connect/Express on Node.js.   It defines a standard way that application/device logic can rely on REST server capabilities without being tied to any one transport (http, express, koa, node-coap, mosca, etc.) 
 
 OWIN-JS is a port of the [OWIN](http://owin.org) specification, but expands the REST philosophy to web servers, application clients, desktop/mobile apps, etc.  
 
@@ -73,7 +73,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 This document refers to the following software actors:
 
-* Server – The REST server (typically HTTP or COAP) that directly communicates with the client and then uses OWIN-JS semantics to process requests. Servers may require an adapter layer that converts to OWIN-JS semantics.
+* Server – The REST server (typically HTTP, COAP or MQTT) that directly communicates with the client and then uses OWIN-JS semantics to process requests. Servers may require an adapter layer that converts to OWIN-JS semantics.
 
 * Framework – A self-contained component based on OWIN-JS exposing its own object model or API that applications may use to facilitate request processing. Frameworks may require an adapter layer that converts from OWIN-JS semantics.
 
@@ -103,8 +103,6 @@ where `this` is set to the Dictionary environment and `myAppFuncPromise` is a Pr
     using AppFunc = Func<
         IDictionary<string, object>, // Environment
         Task>; // Done
-
-
 
 > The application MUST eventually complete the returned _task/promise_, or throw an exception.
 
@@ -141,12 +139,12 @@ Required | OWIN-JS Key Name | Recommended Aliases  | Value Description
 :------: | ------------- | ---------------- | -------------------------------------
 Yes | "owin.RequestBody" | this.request.body<br>this.request | A Stream/BufferList with the request payload, if any Stream.  Null MAY be used as a placeholder if there is no request body. See [Request Body][7].
 Yes | "owin.RequestHeaders" | this.request.headers | A Dictionary of request headers/options. See [Headers][6].
-Yes | "owin.RequestMethod" | this.request.method | A `string` containing the request method of the request (e.g., `"GET"`, `"PUT"`, `"DELETE"`, `"POST"`).
+Yes | "owin.RequestMethod" | this.request.method | A `string` containing the request method of the request (e.g., `"GET"`, `"PUT"`, `"DELETE"`, `"POST"`, `"CONNECT"`, `"SUBSCRIBE"`).
 Yes | "owin.RequestPath" | this.request.path | A `string` containing the request path. The path MUST be relative to the "root" of the application delegate; see [Paths][14].
 Yes | "owin.RequestPathBase" | this.request.pathBase|  A `string` containing the portion of the request path corresponding to the "root" of the application delegate; see [Paths][14].
-Yes | "owin.RequestProtocol" | this.request.protocol | A `string` containing the protocol name and version (e.g. `"COAP/1.0"` or `"HTTP/1.1"`).
+Yes | "owin.RequestProtocol" | this.request.protocol | A `string` containing the protocol name and version (e.g. `"COAP/1.0"`, `"HTTP/1.1"`, or `"MQTT/3.1.1"`).
 Yes | "owin.RequestQueryString" | this.request.queryString | A `string` containing the query string component of the request URI, without the leading “?” (e.g., `"foo=bar&amp;baz=quux"`). The value may be an empty string.
-Yes | "owin.RequestScheme" | this.request.scheme | A `string` containing the URI scheme used for the request (e.g., `"http"`, "coap"`, `"https"`); see [URI Scheme][12].
+Yes | "owin.RequestScheme" | this.request.scheme | A `string` containing the URI scheme used for the request (e.g., `"http"`, `"coap"`, `"https"`, `"mqtt"`); see [URI Scheme][12].
 
 ### 3.2.2 Response Data
 
@@ -154,16 +152,16 @@ Yes | "owin.RequestScheme" | this.request.scheme | A `string` containing the URI
 | :---: | --- | --- | ------- |
 | Yes | "owin.ResponseBody" | this.response.body<br>this.response | A Stream/BufferList used to write/append the response payload, if any. See [Response Body][22]. |
 | Yes | "owin.ResponseHeaders" | this.response.headers | A Dictionary of response headers/options. See [Headers][6]. |
-| Yes | "owin.ResponseStatusCode" | this.response.statusCode | An optional `integer` containing the REST response status code as defined by the transport protocol (COAP or HTTP). |
+| Yes | "owin.ResponseStatusCode" | this.response.statusCode | An optional `integer` containing the REST response status code as defined by the transport protocol (COAP, HTTP or MQTT). |
 | Yes | "owin.ResponseReasonPhrase" | this.response.reasonPhrase | An optional `string` containing the reason phrase associated the given status code. If none is provided then the server SHOULD provide a default as described in [RFC 2616][23] section 6.1.1 |
-| Yes | "owin.ResponseProtocol" | this.response.protocol | An optional `string` containing the protocol name and version (e.g. `"COAP/1.0"` or `"HTTP/1.1"`). If none is provided then the “owin.RequestProtocol” key’s value is the default. | 
+| Yes | "owin.ResponseProtocol" | this.response.protocol | An optional `string` containing the protocol name and version (e.g. `"COAP/1.0"`, `"HTTP/1.1"`, or `"MQTT/3.1.1"`). If none is provided then the “owin.RequestProtocol” key’s value is the default. | 
 
 ### 3.2.3 Other Data
 
 | Required | OWIN-JS Key Name | Recommended Aliases |  Value Description |
 | :---: | --- | --- | ------- |
 | Yes | "owin.CallCancelled" | this.owin.callCancelled| A CancellationToken indicating if the request has been cancelled/aborted. See [Request Lifetime][24]. |
-| Yes | "owin.Version" | this.owin.version | The string `"1.0"` indicating OWIN-JS version. See [Versioning][20]. |
+| Yes | "owin.Version" | this.owin.version | The string `"1.2"` indicating OWIN-JS version. See [Versioning][20]. |
  
 ### 3.2.4 Common Keys
  
@@ -171,10 +169,10 @@ In addition to the keys above the host, server, middleware, application, etc. ma
 
 ### 3.3. Headers
 
-The headers/options of the HTTP/COAP request and response messages are represented by objects of type `IDictionary` (C#) / object `{"key" : "value"}` (ECMAScript). The requirements below are predicated on [RFC 2616 section 4.2][26].
+The headers/options of the HTTP/COAP/MQTT request and response messages are represented by objects of type `IDictionary` (C#) / object `{"key" : "value"}` (ECMAScript). The requirements below are predicated on [RFC 2616 section 4.2][26].
 
   * The dictionary MUST be mutable.
-  * Keys MUST be HTTP/COAP field-names without `':'` or whitespace.
+  * Keys MUST be HTTP/COAP/MQTT field-names without `':'` or whitespace.
   * Keys MUST be compared using OrdinalIgnoreCase.
   * All characters in key and value strings SHOULD be within the ASCII codepage.
   * The value array returned is assumed to be a copy of the data. Any intended changes to the value array MUST be persisted back to the headers dictionary manually by via headers[headerName] = modifiedArray; or headers.Remove(header).
@@ -231,7 +229,7 @@ The Properties dictionary may be used to read or set any configuration parameter
 
 | Required | OWIN-JS Key Name | Recommended Aliases | Value Description |
 | :---: | --- | --- | ------- |
-| Yes | "owin.Version" | this.owin.version | The string `"1.0"` indicating OWIN-JS version. Added by the server in step 2 above. See [Versioning][20]. |
+| Yes | "owin.Version" | this.owin.version | The string `"1.2"` indicating OWIN-JS version. Added by the server in step 2 above. See [Versioning][20]. |
 
 In addition to these keys the host, server, middleware, application, etc. may add arbitrary data associated with the application configuration to the properties dictionary. Guidelines for additional keys and a list of commonly defined keys can be found in [CommonKeys.html][25].
 
@@ -249,7 +247,7 @@ Servers MUST provide a best-guess value for `owin.RequestScheme`.
 
 In the context of an HTTP/1.1 request, the name of the server to which the client is making a request is usually indicated in the Host header field-value of the request, although it might be specified using an absolute Request-URI (see RFC 2616, sections [5.1.2][27], [19.6.1.1][28]).
 
-In the context of an COAP request, the name of the server is usually given on startup.
+In the context of an COAP request or MQTT request, the name of the server is usually given on startup.
 
 A server MUST provide a value for the `"Host"` key in the request header dictionary. The format of the value MUST be "[:]". The value SHOULD be deduced by the host using the following steps:
 
@@ -335,6 +333,7 @@ Future updates to this standard may contain breaking changes (e.g. signature cha
 | [AppBuilder](https://github.com/owin-js/owin-js/blob/master/README.md#middlewareapplication-pipeline-builder-appbuilder)| AppBuilder (implementation)|
 | [Opaque](./Opaque.md)| OWIN-JS Opaque Stream Extension.| 
 | [WebSocket](./Websocket.md)| OWIN-JS WebSocket Extension.| 
+| [PubSub](./PubSub.md)| OWIN-JS PubSub Extension.| 
 | [nodekit](./nodekit.md)| Extensions to support the nodekit.io project| 
 
 ## 9\. Real World Usage
